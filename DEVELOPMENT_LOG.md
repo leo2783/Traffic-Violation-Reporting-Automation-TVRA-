@@ -3,6 +3,16 @@
 這份文件詳細記錄了本專案的開發歷程、模型版本演進、資料處理細節以及遭遇的技術挑戰與解決方案。
 
 ---
+
+## 2026-05-08
+**通用檔案工具導入、舊版 FileCompareTool 汰換與本機測試檔案忽略**
+- **通用 File Compare Tool 整合**：新增 `Tools/files/` 通用檔案比較工具，將檔案比對、複製、刪除流程整理為可維護的 Python 工具鏈，不再綁定特定 YOLO label 場景，未來可支援 OCR `.txt/.json`、裁切圖片與任意資料夾同步。
+- **CLI / GUI / 核心邏輯**：新增 `Tools/files/file_compare_core.py`、`file_compare_cli.py` 與 `file_compare_app.py`，提供核心 compare/copy/delete engine、命令列入口與 Tkinter GUI；工具預設以 dry-run 方式預覽操作，降低誤刪資料集或覆寫檔案的風險。
+- **可選 C++ Hash 加速與打包流程**：新增 `Tools/files/cpp/file_hash_accelerator.cpp`、`CMakeLists.txt` 與 `build_file_compare_exe.bat`，提供 content-hash 加速器與 PyInstaller 打包流程；後續 commit 同步加入 `file_compare_tool.spec` 與 build 相關產物。
+- **Invalid Polygon 圖片提取工具**：新增 `Tools/extract_invalid_polygon_images.py`，可從 Markdown 問題清單解析 `檔案: xxx.txt`，遞迴尋找對應圖片並複製到輸出資料夾，協助排查 self-intersecting polygon 等標註問題。
+- **舊版工具汰換**：刪除根目錄舊版 `FileCompareTool/` Qt/執行檔套件，避免與新的 `Tools/files/` 通用工具重複維護。
+- **本機測試檔案忽略**：更新 `.gitignore`，忽略本機 OCR 測試相關檔案，避免把臨時測試資料提交到版本庫。
+
 ## 2026-05-06
 **多版本模型效能評估與文件更新**
 - **模型版本整理**：全面整理並比較了 5 個版本的模型（V4, V5-960-R1, V5-960-R2, V5-1280, V5-1280-Seg）。

@@ -4,6 +4,15 @@ This document details the development journey of this project, including model v
 
 ---
 
+## 2026-05-08
+**Generic File Tool Integration, Legacy FileCompareTool Replacement, and Local Test Ignore Rules**
+- **Generic File Compare Tool Integration**: Added the `Tools/files/` generic file comparison toolchain, consolidating compare/copy/delete workflows into maintainable Python modules. The tool is domain-agnostic rather than YOLO-label-specific, so it can support future OCR `.txt/.json` outputs, cropped images, and arbitrary folder synchronization.
+- **CLI / GUI / Core Logic**: Added `Tools/files/file_compare_core.py`, `file_compare_cli.py`, and `file_compare_app.py` for the shared compare/copy/delete engine, command-line entry point, and Tkinter GUI. Destructive actions are previewed by default through dry-run behavior to reduce the risk of accidental dataset deletion or overwrite.
+- **Optional C++ Hash Acceleration and Packaging Flow**: Added `Tools/files/cpp/file_hash_accelerator.cpp`, `CMakeLists.txt`, and `build_file_compare_exe.bat` for optional content-hash acceleration and PyInstaller packaging. A follow-up update added `file_compare_tool.spec` and build-related artifacts.
+- **Invalid Polygon Image Extraction Tool**: Added `Tools/extract_invalid_polygon_images.py`, which parses `檔案: xxx.txt` entries from Markdown issue lists, recursively locates corresponding images, and copies them to an output folder for investigating self-intersecting polygon annotation issues.
+- **Legacy Tool Replacement**: Removed the old root-level `FileCompareTool/` Qt/executable bundle to avoid maintaining duplicate implementations now that `Tools/files/` provides the replacement workflow.
+- **Local Test File Ignore Rules**: Updated `.gitignore` to ignore local OCR test files and prevent temporary test data from being committed.
+
 ## 2026-05-06
 **Multi-version Model Evaluation and Documentation Maintenance**
 - **Model Version Review**: Organized and compared 5 model variants (V4, V5-960-R1, V5-960-R2, V5-1280, V5-1280-Seg).
