@@ -107,7 +107,7 @@ tensorrt_cu13_libs==10.16.1.11
 termcolor==3.3.0
 threadpoolctl==3.6.0
 torch==2.11.0+cu130
-torchvision==0.26.0+cu130
+torchvision==0.27.0
 tqdm==4.67.3
 trio==0.33.0
 trio-websocket==0.12.2
