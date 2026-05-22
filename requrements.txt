@@ -60,7 +60,7 @@ opencv-python-headless==4.13.0.92
 osam==0.4.0
 outcome==1.3.0.post0
 packaging==26.2
-pandas==3.0.2
+pandas==3.0.3
 pefile==2024.8.26
 pi_heif==1.3.0
 pillow==12.2.0
